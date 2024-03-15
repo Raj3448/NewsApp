@@ -4,9 +4,9 @@ part 'allarticle_tesla_dto.g.dart';
 @JsonSerializable()
 class AllArticlesAboutTesla {
   @JsonKey(name: "status")
-  final String status;
+  final String? status;
   @JsonKey(name: "totalResults")
-  final int totalResults;
+  final int? totalResults;
   @JsonKey(name: "articles")
   final List<Article> articles;
 
@@ -27,19 +27,19 @@ class Article {
   @JsonKey(name: "source")
   final Source source;
   @JsonKey(name: "author")
-  final String author;
+  final String? author;
   @JsonKey(name: "title")
-  final String title;
+  final String? title;
   @JsonKey(name: "description")
-  final String description;
+  final String? description;
   @JsonKey(name: "url")
-  final String url;
+  final String? url;
   @JsonKey(name: "urlToImage")
-  final String urlToImage;
+  final String? urlToImage;
   @JsonKey(name: "publishedAt")
   final DateTime publishedAt;
   @JsonKey(name: "content")
-  final String content;
+  final String? content;
 
   Article({
     required this.source,
@@ -61,9 +61,9 @@ class Article {
 @JsonSerializable()
 class Source {
   @JsonKey(name: "id")
-  final String id;
+  final String? id;
   @JsonKey(name: "name")
-  final String name;
+  final String? name;
 
   Source({
     required this.id,

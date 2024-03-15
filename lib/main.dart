@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:headline_hub/pages/home/home_view.dart';
+import 'package:headline_hub/pages/shared/cubit/all_article_cubit.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 
 import 'pages/Auth/cubit/auth_cubit.dart';
@@ -22,7 +23,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => AuthCubit())],
+      providers: [
+        BlocProvider(create: (context) => AuthCubit()),
+        BlocProvider(create: (context) => AllArticleCubit())
+      ],
       child: KeyboardDismisser(
         gestures: const [
           GestureType.onTap,

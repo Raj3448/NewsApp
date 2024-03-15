@@ -120,7 +120,7 @@ class _HomeViewState extends State<HomeView> {
                   itemBuilder: (context, index) {
                     return Container(
                         decoration: const BoxDecoration(
-                            color: Colors.amber,
+                            color: Colors.white,
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(10),

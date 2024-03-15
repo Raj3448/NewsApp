@@ -1,6 +1,12 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
+
 import 'package:headline_hub/constant/app_theme.dart';
+
+import 'package:headline_hub/pages/shared/widgets/all_article_display.dart';
+import 'package:headline_hub/pages/shared/widgets/business_article.dart';
+import 'package:headline_hub/pages/shared/widgets/everything_article.dart';
+import 'package:headline_hub/pages/shared/widgets/tech_crunch_article.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({Key? key}) : super(key: key);
@@ -34,10 +40,11 @@ class _HomeWidgetState extends State<HomeWidget>
                   contentPadding: const EdgeInsets.symmetric(horizontal: 19),
                   backgroundColor: AppTheme.primaryColor,
                   unselectedBackgroundColor: Colors.grey[300],
-                  unselectedLabelStyle: TextStyle(color: Colors.black),
-                  labelStyle: TextStyle(
+                  unselectedLabelStyle:
+                      const TextStyle(color: AppTheme.primaryColor),
+                  labelStyle: const TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
-                  tabs: [
+                  tabs: const [
                     Tab(
                       text: "All articles",
                     ),
@@ -53,26 +60,16 @@ class _HomeWidgetState extends State<HomeWidget>
                   ]),
             ),
             Expanded(
-              child: TabBarView(
-                controller: _controller,
-                children: <Widget>[
-                  Center(
-                    child: FutureBuilder(
-                      future: , builder: ((context, snapshot) => )),
-                  ),
-                  Center(
-                    child: Icon(Icons.directions_transit),
-                  ),
-                  Center(
-                    child: Icon(Icons.directions_bike),
-                  ),
-                  Center(
-                    child: Icon(Icons.directions_car),
-                  ),
+                child: TabBarView(
+              controller: _controller,
+              children: const <Widget>[
+                AllArticleDisplay(),
+                BusinessArticle(),
+                TechCrunchArticle(),
+                EverythingArticle()
                 
-                ],
-              ),
-            ),
+              ],
+            )),
           ],
         ));
   }
