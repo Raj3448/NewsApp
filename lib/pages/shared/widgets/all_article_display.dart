@@ -19,15 +19,19 @@ class AllArticleDisplay extends StatelessWidget {
               child: LottieBuilder.asset(
                 'assets/animations/loading.json',
                 height: 90,
-                
               ),
             );
           }
           if (!snapshot.hasData) {
             return const SizedBox();
           }
-          return SizedBox(
+          return Container(
             height: MediaQuery.of(context).size.height * 0.5,
+            decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(40),
+                    bottomRight: Radius.circular(40))),
+            clipBehavior: Clip.antiAlias,
             child: ListView.builder(
                 itemCount: snapshot.data!.articles.length,
                 itemBuilder: (context, index) {

@@ -1,8 +1,10 @@
+import 'package:isar/isar.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'allarticle_tesla_dto.g.dart';
 
+
 @JsonSerializable()
-class AllArticlesAboutTesla {
+class AllArticlesDto {
   @JsonKey(name: "status")
   final String? status;
   @JsonKey(name: "totalResults")
@@ -10,16 +12,16 @@ class AllArticlesAboutTesla {
   @JsonKey(name: "articles")
   final List<Article> articles;
 
-  AllArticlesAboutTesla({
+  AllArticlesDto({
     required this.status,
     required this.totalResults,
     required this.articles,
   });
 
-  factory AllArticlesAboutTesla.fromJson(Map<String, dynamic> json) =>
-      _$AllArticlesAboutTeslaFromJson(json);
+  factory AllArticlesDto.fromJson(Map<String, dynamic> json) =>
+      _$AllArticlesDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$AllArticlesAboutTeslaToJson(this);
+  Map<String, dynamic> toJson() => _$AllArticlesDtoToJson(this);
 }
 
 @JsonSerializable()

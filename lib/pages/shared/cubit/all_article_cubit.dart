@@ -1,9 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:headline_hub/model/allarticle_tesla_dto.dart';
 import 'package:dio/dio.dart';
+import 'package:headline_hub/model/allarticle_tesla_dto.dart';
+
 
 part 'all_article_state.dart';
 
@@ -12,22 +12,22 @@ class AllArticleCubit extends Cubit<AllArticleState> {
 
   final dio = Dio();
 
-  Future<AllArticlesAboutTesla?> fetchAllArticle() async {
+  Future<AllArticlesDto?> fetchAllArticle() async {
     try {
       emit(AllArticleLoading());
 
       Response response = await dio.get(
-        'https://newsapi.org/v2/everything?q=tesla&from=2024-02-14&sortBy=publishedAt&apiKey=6d2dc790e99a493193ba17be295e1490',
+        'https://newsapi.org/v2/everything?q=apple&from=2024-03-13&to=2024-03-13&sortBy=popularity&apiKey=6d2dc790e99a493193ba17be295e1490',
       );
 
       if (response.statusCode == 200) {
         print('Received Response : ${response.data.toString()}');
         print('Hey Iam here');
-        final AllArticlesAboutTesla all = AllArticlesAboutTesla.fromJson(
+        final AllArticlesDto all = AllArticlesDto.fromJson(
             response.data as Map<String, dynamic>);
         print('Received Object total result : ${all.totalResults}');
 
-        return AllArticlesAboutTesla.fromJson(response.data);
+        return AllArticlesDto.fromJson(response.data);
       } else {
         print('failed to fetch article');
         emit(AllArticleFailure(
@@ -40,7 +40,7 @@ class AllArticleCubit extends Cubit<AllArticleState> {
     return null;
   }
 
-  Future<AllArticlesAboutTesla?> fetchBusinessArticle() async {
+  Future<AllArticlesDto?> fetchBusinessArticle() async {
     try {
       emit(AllArticleBusinessLoading());
 
@@ -51,13 +51,13 @@ class AllArticleCubit extends Cubit<AllArticleState> {
       if (response.statusCode == 200) {
         print('Received Business Response : ${response.data.toString()}');
         print('Hey Iam here');
-        final AllArticlesAboutTesla all = AllArticlesAboutTesla.fromJson(
+        final AllArticlesDto all = AllArticlesDto.fromJson(
             response.data as Map<String, dynamic>);
         print('Received Object total result : ${all.totalResults}');
         emit(AllArticleBusinessSuccess(
-          allArticlesAboutTesla: AllArticlesAboutTesla.fromJson(response.data),
+          allArticlesDto: AllArticlesDto.fromJson(response.data),
         ));
-        return AllArticlesAboutTesla.fromJson(response.data);
+        return AllArticlesDto.fromJson(response.data);
       } else {
         print('failed to fetch article');
         emit(AllArticleBusinessFailure(
@@ -70,7 +70,7 @@ class AllArticleCubit extends Cubit<AllArticleState> {
     return null;
   }
 
-  Future<AllArticlesAboutTesla?> fetchTechCruchArticle() async {
+  Future<AllArticlesDto?> fetchTechCruchArticle() async {
     try {
       emit(AllArticleTechCruchLoading());
 
@@ -81,13 +81,13 @@ class AllArticleCubit extends Cubit<AllArticleState> {
       if (response.statusCode == 200) {
         print('Received TechCruch Response : ${response.data.toString()}');
         print('Hey Iam here');
-        final AllArticlesAboutTesla all = AllArticlesAboutTesla.fromJson(
+        final AllArticlesDto all = AllArticlesDto.fromJson(
             response.data as Map<String, dynamic>);
         print('Received Object total result : ${all.totalResults}');
         emit(AllArticleTechCruchSuccess(
-          allArticlesAboutTesla: AllArticlesAboutTesla.fromJson(response.data),
+          allArticlesDto: AllArticlesDto.fromJson(response.data),
         ));
-        return AllArticlesAboutTesla.fromJson(response.data);
+        return AllArticlesDto.fromJson(response.data);
       } else {
         print('failed to fetch article');
         emit(AllArticleTechCruchFailure(
@@ -100,7 +100,7 @@ class AllArticleCubit extends Cubit<AllArticleState> {
     return null;
   }
 
-  Future<AllArticlesAboutTesla?> fetchSortedArticle() async {
+  Future<AllArticlesDto?> fetchSortedArticle() async {
     try {
       emit(AllArticleSortedLoading());
 
@@ -111,13 +111,13 @@ class AllArticleCubit extends Cubit<AllArticleState> {
       if (response.statusCode == 200) {
         print('Received sorted Response : ${response.data.toString()}');
         print('Hey Iam here');
-        final AllArticlesAboutTesla all = AllArticlesAboutTesla.fromJson(
+        final AllArticlesDto all = AllArticlesDto.fromJson(
             response.data as Map<String, dynamic>);
         print('Received Object total result : ${all.totalResults}');
         emit(AllArticleSortedSuccess(
-          allArticlesAboutTesla: AllArticlesAboutTesla.fromJson(response.data),
+          allArticlesDto: AllArticlesDto.fromJson(response.data),
         ));
-        return AllArticlesAboutTesla.fromJson(response.data);
+        return AllArticlesDto.fromJson(response.data);
       } else {
         print('failed to fetch article');
         emit(AllArticleSortedFailure(

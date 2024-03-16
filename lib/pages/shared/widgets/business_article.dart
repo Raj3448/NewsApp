@@ -17,7 +17,6 @@ class BusinessArticle extends StatelessWidget {
               child: LottieBuilder.asset(
                 'assets/animations/loading.json',
                 height: 90,
-                
               ),
             );
           }
@@ -25,8 +24,13 @@ class BusinessArticle extends StatelessWidget {
             return const SizedBox();
           }
           return Center(
-              child: SizedBox(
+              child: Container(
             height: MediaQuery.of(context).size.height * 0.7,
+            decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(40),
+                    bottomRight: Radius.circular(40))),
+            clipBehavior: Clip.antiAlias,
             child: ListView.builder(
                 itemCount: snapshot.data!.articles.length,
                 itemBuilder: (context, index) {

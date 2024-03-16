@@ -6,9 +6,9 @@ part of 'allarticle_tesla_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AllArticlesAboutTesla _$AllArticlesAboutTeslaFromJson(
+AllArticlesDto _$AllArticlesDtoFromJson(
         Map<String, dynamic> json) =>
-    AllArticlesAboutTesla(
+    AllArticlesDto(
       status: json['status'] as String ?? '',
       totalResults: json['totalResults'] == null ? null:json['totalResults'] as int ?? 0,
       articles: (json['articles'] as List<dynamic>)
@@ -16,8 +16,8 @@ AllArticlesAboutTesla _$AllArticlesAboutTeslaFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$AllArticlesAboutTeslaToJson(
-        AllArticlesAboutTesla instance) =>
+Map<String, dynamic> _$AllArticlesDtoToJson(
+        AllArticlesDto instance) =>
     <String, dynamic>{
       'status': instance.status,
       'totalResults': instance.totalResults ?? 0,

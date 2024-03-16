@@ -57,7 +57,7 @@ class _HomeViewState extends State<HomeView> {
       body: Column(
         children: [
           SizedBox(
-            height: screenSize.height * 0.22,
+            //height: screenSize.height * 0.21,
             child: Column(children: [
               ListTile(
                 leading: const CircleAvatar(
@@ -105,7 +105,7 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ),
             ]),
-          ),
+          ).paddingOnly(bottom: 10),
           Expanded(
             child: Container(
               //color: Colors.amber,
@@ -135,6 +135,9 @@ class _HomeViewState extends State<HomeView> {
       ),
       bottomNavigationBar: AnimatedNotchBottomBar(
         notchBottomBarController: _notchBottomBarController,
+        blurFilterX: 10,
+        blurOpacity: 10,
+        notchColor: AppTheme.primaryColor,
         onTap: (int index) {
           _notchBottomBarController.jumpTo(index);
 
@@ -149,7 +152,7 @@ class _HomeViewState extends State<HomeView> {
             ),
             activeItem: Icon(
               Icons.home_filled,
-              color: AppTheme.primaryColor,
+              color: AppTheme.secondaryColor,
             ),
           ),
           const BottomBarItem(
@@ -159,7 +162,7 @@ class _HomeViewState extends State<HomeView> {
             ),
             activeItem: Icon(
               Icons.star,
-              color: AppTheme.primaryColor,
+              color: AppTheme.secondaryColor,
             ),
           ),
           BottomBarItem(
@@ -169,7 +172,7 @@ class _HomeViewState extends State<HomeView> {
             ),
             activeItem: Icon(
               Icons.person,
-              color: AppTheme.primaryColor,
+              color: AppTheme.secondaryColor,
             ),
           ),
         ],

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:headline_hub/constant/app_theme.dart';
 import 'package:headline_hub/model/allarticle_tesla_dto.dart';
+import 'package:headline_hub/model/isardb/saved_new_dto.dart';
+import 'package:headline_hub/services/saved_news_isar_api.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:zapx/zapx.dart';
@@ -17,10 +19,15 @@ class _PostViewWidgetState extends State<PostViewWidget>
     with SingleTickerProviderStateMixin {
   bool _isFav = false;
   late AnimationController _controller;
+  late SavedNewDto savedNewDto;
+  String defaultImageUrl =
+      'https://static.vecteezy.com/system/resources/thumbnails/004/216/831/original/3d-world-news-background-loop-free-video.jpg';
 
   @override
   void initState() {
     super.initState();
+    //temp Initialized (He kay kamach nahiy)
+    savedNewDto = SavedNewDto(myArticle: MyArticle());
     _controller = AnimationController(
         duration: const Duration(milliseconds: 500), vsync: this);
   }
@@ -43,9 +50,7 @@ class _PostViewWidgetState extends State<PostViewWidget>
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
           child: widget.articles.urlToImage == null
-              ? Image.network(
-                  'https://static.vecteezy.com/system/resources/thumbnails/004/216/831/original/3d-world-news-background-loop-free-video.jpg',
-                  fit: BoxFit.cover)
+              ? Image.network(defaultImageUrl, fit: BoxFit.cover)
               : Image.network(
                   widget.articles.urlToImage!,
                   fit: BoxFit.cover,
@@ -94,8 +99,29 @@ class _PostViewWidgetState extends State<PostViewWidget>
                             child: GestureDetector(
                               onTap: () {
                                 if (_isFav) {
+                                  MyArticle article = MyArticle();
+                                  article.author =
+                                      widget.articles.author ?? 'Raj Chavan';
+                                  article.title =
+                                      widget.articles.title ?? 'Title Here';
+                                  article.content =
+                                      widget.articles.content ?? 'content here';
+                                  article.description =
+                                      widget.articles.description ??
+                                          'description here';
+                                  article.publishedAt =
+                                      widget.articles.publishedAt;
+                                  article.url = widget.articles.url ??
+                                      'https://dribbble.com/shots/18754171-News-Reading-Mobile-App';
+                                  article.urlToImage =
+                                      widget.articles.urlToImage ??
+                                          defaultImageUrl;
+                                  savedNewDto = SavedNewDto(myArticle: article);
+                                  SavedNewsIsarApi().insert(savedNewDto);
                                   _controller.forward();
                                 } else {
+                                  SavedNewsIsarApi()
+                                      .delete(savedNewDto.id.toString());
                                   _controller.reverse();
                                 }
                                 setState(() {

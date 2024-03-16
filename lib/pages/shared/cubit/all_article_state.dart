@@ -13,8 +13,8 @@ final class AllArticleFailure extends AllArticleState {
 }
 
 final class AllArticleSuccess extends AllArticleState {
-  final AllArticlesAboutTesla allArticlesAboutTesla;
-  AllArticleSuccess({required this.allArticlesAboutTesla});
+  final AllArticlesDto allArticlesDto;
+  AllArticleSuccess({required this.allArticlesDto});
 }
 
 //Top Business
@@ -26,8 +26,8 @@ final class AllArticleBusinessFailure extends AllArticleState {
 }
 
 final class AllArticleBusinessSuccess extends AllArticleState {
-  final AllArticlesAboutTesla allArticlesAboutTesla;
-  AllArticleBusinessSuccess({required this.allArticlesAboutTesla});
+  final AllArticlesDto allArticlesDto;
+  AllArticleBusinessSuccess({required this.allArticlesDto});
 }
 
 //Top Tech Crunch
@@ -39,8 +39,8 @@ final class AllArticleTechCruchFailure extends AllArticleState {
 }
 
 final class AllArticleTechCruchSuccess extends AllArticleState {
-  final AllArticlesAboutTesla allArticlesAboutTesla;
-  AllArticleTechCruchSuccess({required this.allArticlesAboutTesla});
+  final AllArticlesDto allArticlesDto;
+  AllArticleTechCruchSuccess({required this.allArticlesDto});
 }
 
 //sorted all
@@ -52,6 +52,6 @@ final class AllArticleSortedFailure extends AllArticleState {
 }
 
 final class AllArticleSortedSuccess extends AllArticleState {
-  final AllArticlesAboutTesla allArticlesAboutTesla;
-  AllArticleSortedSuccess({required this.allArticlesAboutTesla});
+  final AllArticlesDto allArticlesDto;
+  AllArticleSortedSuccess({required this.allArticlesDto});
 }

@@ -1,8 +1,7 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:headline_hub/constant/app_theme.dart';
-
 import 'package:headline_hub/pages/shared/widgets/all_article_display.dart';
 import 'package:headline_hub/pages/shared/widgets/business_article.dart';
 import 'package:headline_hub/pages/shared/widgets/everything_article.dart';
@@ -28,49 +27,50 @@ class _HomeWidgetState extends State<HomeWidget>
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    return DefaultTabController(
-        length: 4,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-              child: ButtonsTabBar(
-                  controller: _controller,
-                  duration: 1,
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 19),
-                  backgroundColor: AppTheme.primaryColor,
-                  unselectedBackgroundColor: Colors.grey[300],
-                  unselectedLabelStyle:
-                      const TextStyle(color: AppTheme.primaryColor),
-                  labelStyle: const TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
-                  tabs: const [
-                    Tab(
-                      text: "All articles",
-                    ),
-                    Tab(
-                      text: "Top business",
-                    ),
-                    Tab(
-                      text: "TechCrunch",
-                    ),
-                    Tab(
-                      text: "Education",
-                    ),
-                  ]),
-            ),
-            Expanded(
-                child: TabBarView(
-              controller: _controller,
-              children: const <Widget>[
-                AllArticleDisplay(),
-                BusinessArticle(),
-                TechCrunchArticle(),
-                EverythingArticle()
-                
-              ],
-            )),
-          ],
-        ));
+    return Animate(
+      child: DefaultTabController(
+          length: 4,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+                child: ButtonsTabBar(
+                    controller: _controller,
+                    duration: 1,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 19),
+                    backgroundColor: AppTheme.primaryColor,
+                    unselectedBackgroundColor: Colors.grey[300],
+                    unselectedLabelStyle:
+                        const TextStyle(color: AppTheme.primaryColor),
+                    labelStyle: const TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                    tabs: const [
+                      Tab(
+                        text: "All articles",
+                      ),
+                      Tab(
+                        text: "Top business",
+                      ),
+                      Tab(
+                        text: "TechCrunch",
+                      ),
+                      Tab(
+                        text: "Education",
+                      ),
+                    ]),
+              ),
+              Expanded(
+                  child: TabBarView(
+                controller: _controller,
+                children: const <Widget>[
+                  AllArticleDisplay(),
+                  BusinessArticle(),
+                  TechCrunchArticle(),
+                  EverythingArticle()
+                ],
+              )),
+            ],
+          )),
+    ).animate().flipV();
   }
 }
