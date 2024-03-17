@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:headline_hub/db/localdb.dart';
 import 'package:headline_hub/pages/Auth/auth_screen.dart';
-import 'package:headline_hub/pages/home/home_view.dart';
 import 'package:headline_hub/pages/shared/cubit/all_article_cubit.dart';
 
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
@@ -18,7 +17,6 @@ void main() async {
   await openDB();
   runApp(DevicePreview(
       enabled: !kReleaseMode, builder: (context) => const MyApp()));
-  // const MyApp());
 }
 
 class MyApp extends StatelessWidget {
