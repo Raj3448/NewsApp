@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:headline_hub/db/localdb.dart';
+import 'package:headline_hub/pages/Auth/auth_screen.dart';
 import 'package:headline_hub/pages/home/home_view.dart';
 import 'package:headline_hub/pages/shared/cubit/all_article_cubit.dart';
 
@@ -55,8 +56,8 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const HomeView(),
-          //home: const AuthScreen(),
+          home: const AuthScreen(),
+        
         ),
       ),
     );

@@ -30,7 +30,7 @@ Article _$ArticleFromJson(Map<String, dynamic> json) => Article(
       title: json['title']== null ? null :json['title'] as String ?? '',
       description: json['description']== null ? null :json['description'] as String ?? '',
       url: json['url']== null ? null :json['url'] as String ?? '',
-      urlToImage: json['urlToImage'] == null ? null : json['urlToImage'] as String ?? '',
+      urlToImage: json['urlToImage'] == null ? 'https://static.vecteezy.com/system/resources/thumbnails/004/216/831/original/3d-world-news-background-loop-free-video.jpg' : json['urlToImage'] as String,
       publishedAt: DateTime.parse(json['publishedAt'] as String ?? ''),
       content: json['content']== null ? null :json['content'] as String ?? '',
     );

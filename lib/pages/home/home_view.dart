@@ -4,6 +4,7 @@ import 'package:headline_hub/constant/app_theme.dart';
 import 'package:headline_hub/pages/shared/home_widget.dart';
 import 'package:headline_hub/pages/shared/profile_widget.dart';
 import 'package:headline_hub/pages/shared/saved_news_widget.dart';
+import 'package:lottie/lottie.dart';
 import 'package:zapx/zapx.dart';
 
 class HomeView extends StatefulWidget {
@@ -19,6 +20,7 @@ class _HomeViewState extends State<HomeView> {
       NotchBottomBarController();
   late final List<Widget> _widgetList;
   final PageController _controller = PageController();
+  int _currentIndex = 0;
   @override
   void initState() {
     super.initState();
@@ -56,56 +58,62 @@ class _HomeViewState extends State<HomeView> {
       extendBody: true,
       body: Column(
         children: [
-          SizedBox(
-            //height: screenSize.height * 0.21,
-            child: Column(children: [
-              ListTile(
-                leading: const CircleAvatar(
-                  radius: 25,
-                  backgroundImage: AssetImage('assets/images/user.png'),
-                ),
-                title: const Text(
-                  'Hi Raj',
-                  style: AppTheme.displayMedium,
-                ),
-                subtitle: Text(
-                  greeting,
-                  style: AppTheme.copyWith(
-                    fontSize: 18,
-                    color: AppTheme.primaryColor,
+          if (_currentIndex != 2)
+            AnimatedContainer(
+              //height: screenSize.height * 0.21,
+              duration: const Duration(seconds: 1),
+              
+              child: Column(children: [
+                ListTile(
+                    leading: const CircleAvatar(
+                      radius: 25,
+                      backgroundImage: AssetImage('assets/images/user.png'),
+                    ),
+                    title: const Text(
+                      'Hi Raj',
+                      style: AppTheme.displayMedium,
+                    ),
+                    subtitle: Text(
+                      greeting,
+                      style: AppTheme.copyWith(
+                        fontSize: 18,
+                        color: AppTheme.primaryColor,
+                      ),
+                    ),
+                    trailing: LottieBuilder.asset(
+                      'assets/animations/notify.json',
+                      repeat: false,
+                      height: 40,
+                      fit: BoxFit.cover,
+                    )).paddingOnly(top: 30, bottom: 10),
+                SizedBox(
+                  height: screenSize.height * 0.06,
+                  width: screenSize.width * 0.9,
+                  child: TextFormField(
+                    focusNode: _searchFocusNode,
+                    decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.search,
+                            size: 30, color: Colors.grey),
+                        fillColor: const Color.fromARGB(60, 199, 198, 198),
+                        filled: true,
+                        border: InputBorder.none,
+                        hintText: 'Search',
+                        hintStyle: AppTheme.displayMedium,
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 15.0, horizontal: 10.0),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(width: 0.001),
+                            borderRadius: BorderRadius.circular(10)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(width: 0.001),
+                            borderRadius: BorderRadius.circular(10))),
+                    onFieldSubmitted: (value) {
+                      _searchFocusNode.unfocus();
+                    },
                   ),
                 ),
-                trailing: const Icon(Icons.notifications_none_rounded,
-                    color: AppTheme.primaryColor, size: 30),
-              ).paddingOnly(top: 30, bottom: 10),
-              SizedBox(
-                height: screenSize.height * 0.06,
-                width: screenSize.width * 0.9,
-                child: TextFormField(
-                  focusNode: _searchFocusNode,
-                  decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.search,
-                          size: 30, color: Colors.grey),
-                      fillColor: const Color.fromARGB(60, 199, 198, 198),
-                      filled: true,
-                      border: InputBorder.none,
-                      hintText: 'Search',
-                      hintStyle: AppTheme.displayMedium,
-                      contentPadding: const EdgeInsets.symmetric(
-                          vertical: 15.0, horizontal: 10.0),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(width: 0.001),
-                          borderRadius: BorderRadius.circular(10)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(width: 0.001),
-                          borderRadius: BorderRadius.circular(10))),
-                  onFieldSubmitted: (value) {
-                    _searchFocusNode.unfocus();
-                  },
-                ),
-              ),
-            ]),
-          ).paddingOnly(bottom: 10),
+              ]),
+            ).paddingOnly(bottom: 10),
           Expanded(
             child: Container(
               //color: Colors.amber,
@@ -114,6 +122,10 @@ class _HomeViewState extends State<HomeView> {
                   pageSnapping: true,
                   controller: _controller,
                   onPageChanged: (index) {
+                    setState(() {
+                      _currentIndex = index;
+                    });
+
                     _notchBottomBarController.jumpTo(index);
                   },
                   clipBehavior: Clip.antiAlias,
