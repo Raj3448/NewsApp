@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:headline_hub/constant/app_theme.dart';
 import 'package:headline_hub/pages/Auth/cubit/auth_cubit.dart';
 import 'package:headline_hub/pages/home/home_view.dart';
+import 'package:provider/provider.dart';
 import 'package:zapx/zapx.dart';
 
 class AuthOtpView extends StatefulWidget {
@@ -143,6 +144,7 @@ class _AuthOtpViewState extends State<AuthOtpView>
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
+    final appTheme = Provider.of<AppTheme>(context).
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xfffaf9f6),

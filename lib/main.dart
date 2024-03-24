@@ -3,11 +3,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:headline_hub/constant/app_theme.dart';
 import 'package:headline_hub/db/localdb.dart';
 import 'package:headline_hub/pages/home/home_view.dart';
 import 'package:headline_hub/pages/shared/cubit/all_article_cubit.dart';
 
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
+import 'package:provider/provider.dart';
 
 import 'pages/Auth/cubit/auth_cubit.dart';
 
@@ -28,7 +30,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => AuthCubit()),
-        BlocProvider(create: (context) => AllArticleCubit())
+        BlocProvider(create: (context) => AllArticleCubit()),
+        ChangeNotifierProvider(create: (context)=> AppTheme())
       ],
       child: KeyboardDismisser(
         gestures: const [
