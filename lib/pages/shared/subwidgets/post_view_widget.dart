@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:headline_hub/constant/app_theme.dart';
 import 'package:headline_hub/model/allarticle_tesla_dto.dart';
 import 'package:headline_hub/model/isardb/saved_new_dto.dart';
@@ -48,21 +47,25 @@ class _PostViewWidgetState extends State<PostViewWidget>
         Navigator.of(context).push(
           PageRouteBuilder(
             transitionDuration: const Duration(milliseconds: 500),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
-              var begin = const Offset(1.0, 0.0);
-              var end = Offset.zero;
-              var curve = Curves.bounceInOut;
-              var tween =
-                  Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-              var offsetAnimation = animation.drive(tween);
-              return SlideTransition(
-                position: offsetAnimation,
-                child: child,
-              );
-            },
+            // transitionsBuilder:
+            //     (context, animation, secondaryAnimation, child) {
+            //   var begin = const Offset(1.0, 0.0);
+            //   var end = Offset.zero;
+            //   var curve = Curves.bounceInOut;
+            //   var tween =
+            //       Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+            //   var offsetAnimation = animation.drive(tween);
+            //   return SlideTransition(
+            //     position: offsetAnimation,
+            //     child: child,
+            //   );
+            // },
             pageBuilder: (context, animation, secondaryAnimation) {
-              return NewsDetailsViewPage(article: widget.articles, savedNewDto: savedNewDto, isFav: _isFav,);
+              return NewsDetailsViewPage(
+                article: widget.articles,
+                savedNewDto: savedNewDto,
+                isFav: _isFav,
+              );
             },
           ),
         );
@@ -76,7 +79,9 @@ class _PostViewWidgetState extends State<PostViewWidget>
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
             child: widget.articles.urlToImage == null
-                ? Image.network(defaultImageUrl, fit: BoxFit.cover)
+                ? Hero(
+                    tag: 'rajkumar',
+                    child: Image.network(defaultImageUrl, fit: BoxFit.cover))
                 : Image.network(
                     widget.articles.urlToImage!,
                     fit: BoxFit.cover,
@@ -86,7 +91,6 @@ class _PostViewWidgetState extends State<PostViewWidget>
             height: screenSize.height * 0.4,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 SizedBox(
                     width: double.infinity,

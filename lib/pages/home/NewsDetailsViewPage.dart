@@ -98,10 +98,13 @@ class _NewsDetailsViewPageState extends State<NewsDetailsViewPage>
                     ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         clipBehavior: Clip.antiAlias,
-                        child: Image.network(
-                          widget.article.urlToImage!,
-                          height: 200,
-                          fit: BoxFit.cover,
+                        child: Hero(
+                          tag: 'rajkumar',
+                          child: Image.network(
+                            widget.article.urlToImage!,
+                            height: 200,
+                            fit: BoxFit.cover,
+                          ),
                         )),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 5.0),
